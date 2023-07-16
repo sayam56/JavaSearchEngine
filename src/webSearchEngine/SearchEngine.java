@@ -29,6 +29,7 @@ public class SearchEngine {
 			System.out.println(" 1) Enter 1 for the Web search from the URL you will pass");
 			System.out.println(" 2) Enter 2 for the Web search from static URL (https://www.javatpoint.com/)");
 			System.out.println(" 3) Enter 3 for Exit ");
+			System.out.println(" 4) Enter 4 to clean directories ");
 		
 			int option = sc.nextInt();
 
@@ -46,6 +47,12 @@ public class SearchEngine {
 			case 3:
 				System.out.println("Exit...");
 				choose = "n";
+				break;
+				
+			case 4:
+				engine.deleteFiles();
+				System.out.println("Deleted");
+				choose = "y";
 				break;
 
 			default:
@@ -135,22 +142,22 @@ public class SearchEngine {
 		return sc.next();
 	}
 
-//	private void deleteFiles() {
+	public void deleteFiles() {
 //		File files = new File(Path.txtDirectoryPath);
 //		File[] fileArray = files.listFiles();
 //
 //		for (int i = 0; i < fileArray.length; i++) {
 //			fileArray[i].delete();
 //		}
-//		
-//		File fileshtml = new File(Path.htmlDirectoryPath);
-//		File[] fileArrayhtml = fileshtml.listFiles();
-//
-//		for (int i = 0; i < fileArrayhtml.length; i++) {
-//			
-//			fileArrayhtml[i].delete();
-//		}
-//	}
+		
+		File fileshtml = new File(Path.htmlDirectoryPath);
+		File[] fileArrayhtml = fileshtml.listFiles();
+
+		for (int i = 0; i < fileArrayhtml.length; i++) {
+			
+			fileArrayhtml[i].delete();
+		}
+	}
 	
 	/**
 	 * It will validate url entered by user with DNS

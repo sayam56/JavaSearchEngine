@@ -26,7 +26,7 @@ public class Crawler {
 		if (depth <= maxDepth) {
 			try {
 				Document document = Jsoup.connect(url).get();
-//				ParseURL.saveDoc(document, url);
+				ParseURL.saveDoc(document, url);
 				depth++;
 				if (depth < maxDepth) {
 					Elements links = document.select("a[href]");
