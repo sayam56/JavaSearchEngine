@@ -81,62 +81,63 @@ public class SearchEngine {
 		Crawler.startCrawler(url, 0); //crawling the URL
 		System.out.println("Crawling Compelted...");
 		
-		
+		System.out.println("*******************************************************");
 //		searching portion starts here
 
 		// Hash table is used instead of Hash Map as it don't allow null value in insertion
-//		Hashtable<String, Integer> listOfFiles = new Hashtable<String, Integer>();
-//		
-//		String choice = "y";
-//		do {
-//			System.out.println("---------------------------------------------------");
-//			System.out.println("\n Enter the word to search ");
-//			String wordToSearch = sc.next();
-//			System.out.println("---------------------------------------------------");
-//			int frequency = 0;
-//			int noOfFiles = 0;
-//			listOfFiles.clear();
-//			try {
-//				System.out.println("\nSearching...");
-//				File files = new File(Path.txtDirectoryPath);
-//
-//				File[] fileArray = files.listFiles();
-//
-//				for (int i = 0; i < fileArray.length; i++) {
-//
-//					In data = new In(fileArray[i].getAbsolutePath());
-//
-//					String txt = data.readAll();
-//					data.close();
-//					Pattern p = Pattern.compile("::");
-//					String[] file_name = p.split(txt);
-//					frequency = SearchWord.wordSearch(txt, wordToSearch.toLowerCase(), file_name[0]); // search word in txt files
-//
-//					if (frequency != 0) {
-//						listOfFiles.put(file_name[0], frequency);
-//						noOfFiles++;
-//					}
-//					
-//				}
-//
-//				if(noOfFiles>0) {
-//				System.out.println("\nTotal Number of Files containing word : " + wordToSearch + " is : " + noOfFiles);
-//				}else {
-//					System.out.println("\n File not found! containing word : "+ wordToSearch);
-//					SearchWord.suggestAltWord(wordToSearch.toLowerCase()); // suggest another word if entered word not found
-//				}
-//
-//				SearchWord.rankFiles(listOfFiles, noOfFiles); //rank the files based on frequency of word count
-//				
-//
-//			} catch (Exception e) {
-//				System.out.println("Exception:" + e);
-//			}
-//			System.out.println("\n Do you want return to search another word(y/n)?");
-//			choice = sc.next();
-//		} while (choice.equals("y"));
-//		
-//		deleteFiles();
+		Hashtable<String, Integer> listOfFiles = new Hashtable<String, Integer>();
+		
+		String choice = "y";
+		do {
+			System.out.println("---------------------------------------------------");
+			System.out.println("\n Enter the word to search ");
+			String wordToSearch = sc.next();
+			System.out.println("---------------------------------------------------");
+			int frequency = 0;
+			int noOfFiles = 0;
+			listOfFiles.clear();
+			try {
+				System.out.println("\nSearching...");
+				System.out.println(wordToSearch);
+				System.out.println(listOfFiles);
+				System.out.println("103-----------"+Path.txtDirectoryPath);
+				File files = new File(Path.txtDirectoryPath);
+				System.out.println("105-------"+files);
+				File[] fileArray = files.listFiles();
+				for (int i = 0; i < fileArray.length; i++) {
+					System.out.println("109-------"+i);
+					In data = new In(fileArray[i].getAbsolutePath());
+					String txt = data.readAll();
+					data.close();
+					Pattern p = Pattern.compile("::");
+					String[] file_name = p.split(txt);
+					frequency = SearchWord.wordSearch(txt, wordToSearch.toLowerCase(), file_name[0]); // search word in txt files
+
+					if (frequency != 0) {
+						listOfFiles.put(file_name[0], frequency);
+						noOfFiles++;
+					}
+					
+				}
+
+				if(noOfFiles>0) {
+				System.out.println("\nTotal Number of Files containing word : " + wordToSearch + " is : " + noOfFiles);
+				}else {
+					System.out.println("\n File not found! containing word : "+ wordToSearch);
+					SearchWord.suggestAltWord(wordToSearch.toLowerCase()); // suggest another word if entered word not found
+				}
+
+				SearchWord.rankFiles(listOfFiles, noOfFiles); //rank the files based on frequency of word count
+				
+
+			} catch (Exception e) {
+				System.out.println("Exception:" + e);
+			}
+			System.out.println("\n Do you want return to search another word(y/n)?");
+			choice = sc.next();
+		} while (choice.equals("y"));
+		
+		deleteFiles();
 //		
 		System.out.println("\n Do you want return to main menu(y/n)?");
 		return sc.next();
